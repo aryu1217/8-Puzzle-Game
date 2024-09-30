@@ -1,0 +1,24 @@
+.puzzle {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 5px;
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background-color: lightblue;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid black; /* 버튼처럼 보이도록 테두리 추가 */
+}
+
+.empty {
+  background-color: white;
+  border: 2px solid black; /* 빈 칸도 테두리를 추가해서 보이게 함 */
+}
