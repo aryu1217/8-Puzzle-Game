@@ -129,34 +129,44 @@ function resetPuzzle() {
 
 // 퍼즐 섞기 버튼 클릭 시
 document.getElementById("solve-button").addEventListener("click", () => {
+  const puzzleElement = document.querySelector(".puzzle");
+
+  // 퍼즐 회전 애니메이션 시작
+  puzzleElement.classList.add("puzzle-rotate");
+
   initial_puzzle_state = generateRandomPuzzle(); // 새로운 퍼즐 생성 및 저장
   current_puzzle_state = [...initial_puzzle_state]; // 현재 퍼즐 상태도 동일하게 설정
   updatePuzzleTiles(current_puzzle_state); // HTML 타일 상태 업데이트
 
-  const solution_path = bfs(current_puzzle_state); // BFS 실행
-  if (solution_path) {
-    solution_length = solution_path.length;
-    document.getElementById(
-      "solution-output"
-    ).innerText = `남은 이동 횟수: ${solution_length}`;
-  } else {
-    document.getElementById("solution-output").innerText =
-      "해결 불가! 다시 섞어주세요.";
+  // BFS 실행 (setTimeout으로 작업 중인 것처럼 보이게 설정)
+  setTimeout(() => {
+    const solution_path = bfs(current_puzzle_state); // BFS 실행
 
-    // 모든 타일에 shake 및 error-border 클래스 추가
-    tiles.forEach((tile) => {
-      tile.classList.add("shake", "error-border");
-    });
+    if (solution_path) {
+      solution_length = solution_path.length;
+      document.getElementById(
+        "solution-output"
+      ).innerText = `Solution Path Length: ${solution_length}`;
 
-    // 애니메이션이 끝난 후에 shake 및 error-border 클래스를 제거
-    setTimeout(() => {
-      tiles.forEach((tile) => {
-        tile.classList.remove("shake", "error-border");
-      });
-    }, 500); // 애니메이션 시간과 일치
-  }
+      // 퍼즐 회전 애니메이션 중지
+      puzzleElement.classList.remove("puzzle-rotate");
+    } else {
+      document.getElementById("solution-output").innerText =
+        "해결 불가! 다시 섞어주세요.";
+
+      // 해결 불가일 때 퍼즐 애니메이션 (테두리 색을 빨간색으로 변경하고 튕기게)
+      puzzleElement.classList.add("shake", "error-border");
+
+      // 1초 후에 애니메이션 및 빨간 테두리 해제
+      setTimeout(() => {
+        puzzleElement.classList.remove("shake", "error-border");
+      }, 1000);
+
+      // 퍼즐 회전 애니메이션 중지
+      puzzleElement.classList.remove("puzzle-rotate");
+    }
+  }, 100); // setTimeout을 통해 비동기적으로 처리 (작업 지연을 시뮬레이션)
 });
-
 // 초기화 버튼 추가
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("reset-button").addEventListener("click", () => {
