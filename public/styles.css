@@ -1,6 +1,6 @@
 body {
-  background-color: black;
-  color: white;
+  background-color: #0e0f10;
+  color: #9da5b6;
 }
 
 #solution-output {
@@ -13,8 +13,8 @@ body {
   top: 150px; /* 위쪽에서 150px 내려옴 */
   right: 100px; /* 오른쪽에서 100px 떨어짐 */
   width: 300px; /* 출력 영역의 너비 */
-  font-size: 18px;
-  color: white;
+  font-size: 14px;
+  color: #f6fcdd;
   background-color: rgba(255, 255, 255, 0.1); /* 약간의 배경 투명도 */
   padding: 10px;
   border-radius: 8px;
@@ -37,16 +37,17 @@ body {
 }
 
 .tile {
+  color: #f6fcdd;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 150px;
   height: 150px;
-  background-color: lightblue;
+  background-color: #a3c4bc;
   font-size: 26px;
   font-weight: bold;
   cursor: pointer;
-  border: 2px solid white;
+  border: 2px solid #f6fcdd;
   transition: transform 0.3s, border-color 0.3s;
 }
 

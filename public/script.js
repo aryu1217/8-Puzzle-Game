@@ -138,7 +138,7 @@ document.getElementById("solve-button").addEventListener("click", () => {
     solution_length = solution_path.length;
     document.getElementById(
       "solution-output"
-    ).innerText = `Solution Path Length: ${solution_length}`;
+    ).innerText = `남은 이동 횟수: ${solution_length}`;
   } else {
     document.getElementById("solution-output").innerText =
       "해결 불가! 다시 섞어주세요.";
