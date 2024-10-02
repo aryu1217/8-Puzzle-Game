@@ -3,14 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8-Puzzle</title>
     <link rel="stylesheet" href="styles.css" />
-    <!-- CSS 파일을 연결했는지 확인 -->
   </head>
   <body>
-    <h1>8-Puzzle Solver</h1>
-    <button id="solve-button">Solve Puzzle</button>
-    <div id="solution-output">Solution Path Length:</div>
+    <div class="title">8-Puzzle Game</div>
+    <div id="solution-output"></div>
     <div class="puzzle">
       <div class="tile" id="tile1">1</div>
       <div class="tile" id="tile2">2</div>
@@ -21,6 +18,18 @@
       <div class="tile" id="tile7">7</div>
       <div class="tile" id="tile8">8</div>
       <div class="tile empty" id="tile9"></div>
+    </div>
+    <div class="control-button">
+      <button id="solve-button">퍼즐 섞기</button>
+      <button id="reset-button">퍼즐 초기화</button>
+    </div>
+    <div id="Success"></div>
+
+    <div
+      id="step-output"
+      style="margin-top: 20px; font-family: Arial, sans-serif"
+    >
+      <h2>0의 위치 출력</h2>
     </div>
 
     <script src="script.js"></script>
