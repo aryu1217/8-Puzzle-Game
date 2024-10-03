@@ -3,6 +3,27 @@ body {
   color: #9da5b6;
 }
 
+.level-button {
+  position: absolute;
+  top: 360px;
+  left: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.level-button button {
+  width: 200px;
+  height: 60px;
+  font-size: 30px;
+  padding: 10px;
+}
+
+.level-button button:hover {
+  animation: bounce 0.3s ease;
+}
+
 #solution-output {
   display: grid;
   justify-content: center;
@@ -10,9 +31,9 @@ body {
 
 #step-output {
   position: absolute;
-  top: 110px; /* 위쪽에서 150px 내려옴 */
-  right: 190px; /* 오른쪽에서 100px 떨어짐 */
-  width: 300px; /* 출력 영역의 너비 */
+  top: 110px;
+  right: 190px;
+  width: 300px;
   font-size: 14px;
   color: #f6fcdd;
   background-color: rgba(255, 255, 255, 0.1); /* 약간의 배경 투명도 */
@@ -31,10 +52,10 @@ body {
 .puzzle {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(3, 160px); /* 각 타일의 가로 크기 증가 */
-  grid-template-rows: repeat(3, 160px); /* 각 타일의 세로 크기 증가 */
+  grid-template-columns: repeat(3, 160px);
+  grid-template-rows: repeat(3, 160px);
   margin: 60px 50px 20px 50px;
-  gap: 10px; /* 타일 간의 간격은 그대로 유지 */
+  gap: 10px;
 }
 
 .tile {
@@ -89,15 +110,15 @@ body {
 }
 
 .control-button button {
-  height: 40px; /* 버튼의 높이 */
-  font-size: 15px; /* 버튼 안의 텍스트 크기 */
-  padding: 10px 20px; /* 버튼 안쪽 여백 */
-  margin: 0 10px; /* 버튼 간의 간격 */
-  background-color: l#FF7B9C; /* 버튼 배경색 */
-  border-radius: 4px; /* 버튼 모서리 둥글게 */
+  height: 40px;
+  font-size: 15px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: l#FF7B9C;
+  border-radius: 4px;
 
-  cursor: pointer; /* 마우스 커서 모양 변경 */
-  transition: background-color 0.3s ease; /* 호버시 배경색 변화 애니메이션 */
+  cursor: pointer;
+  transition: rotatePuzzle;
 }
 
 #reset-button {
@@ -124,4 +145,28 @@ body {
   100% {
     transform: rotateY(360deg);
   }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+#Success {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  font-size: 50px;
+  color: #64cd3c; /* 체크 표시 색상 */
+  opacity: 0; /* 기본적으로 보이지 않음 */
+  transition: opacity 1s ease;
+}
+
+#Success.show {
+  opacity: 1; /* 'show' 클래스를 추가하면 체크 표시가 나타남 */
 }
