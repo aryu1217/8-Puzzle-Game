@@ -3,7 +3,9 @@ const tiles = Array.from(document.querySelectorAll(".tile"));
 let solution_length = 0; // Solution Path Length 저장 변수
 let current_puzzle_state = []; // 현재 퍼즐 상태를 저장할 배열
 let initial_puzzle_state = []; // 처음 섞은 상태를 저장할 배열
+let result_length; // result_length를 전역 변수로 선언하여 어디서든 접근 가능
 
+// 타일을 클릭하여 이동
 // 타일을 클릭하여 이동
 puzzle.addEventListener("click", (e) => {
   const tile = e.target;
@@ -28,10 +30,10 @@ puzzle.addEventListener("click", (e) => {
         successElement.classList.add("show"); // 퍼즐이 맞춰졌을 때만 체크 표시 나타나기
       }
 
-      if (solution_length === -1) {
-        alert("이동 횟수가 남아 있지 않습니다. 퍼즐을 초기화합니다.");
-        resetPuzzle();
-      }
+      // 이동 횟수 텍스트 업데이트
+      document.getElementById(
+        "solution-output"
+      ).innerText = `남은 이동 횟수: ${result_length}`; // 이곳에 업데이트된 남은 횟수를 표시
     }
   }
 });
@@ -54,10 +56,10 @@ function swapTiles(tile1, tile2) {
   tile1.classList.toggle("empty");
   tile2.classList.toggle("empty");
 
-  solution_length -= 1;
+  result_length -= 1; // 이동 후 남은 횟수 감소
   document.getElementById(
     "solution-output"
-  ).innerText = `Solution Path Length: ${solution_length}`;
+  ).innerText = `남은 이동 횟수: ${result_length}`; // 업데이트된 횟수 표시
 }
 
 const GOAL_STATE = [1, 2, 3, 4, 5, 6, 7, 8, 0];
@@ -102,7 +104,8 @@ function resetPuzzle() {
     "solution-output"
   ).innerText = `Solution Path Length: ${solution_length}`;
 
-  // 체크 표시 관련 초기화는 없음
+  const successElement = document.getElementById("Success");
+  successElement.classList.remove("show"); // 'show' 클래스 제거하여 체크 표시 숨기기
 }
 
 // 퍼즐 섞기 버튼 클릭 시
@@ -231,3 +234,44 @@ const MOVES = {
   7: [4, 6, 8],
   8: [5, 7],
 };
+
+// Easy 모드
+document.getElementById("easy-button").addEventListener("click", () => {
+  result_length = Infinity; // 무한으로 설정
+  document.getElementById("solution-output").innerText = `남은 이동 횟수: ∞`; // 이지 모드에서 이동 횟수 표시
+  document.getElementById("step-output").style.display = "block"; // Easy 모드에서만 step-output 보이기
+  document.getElementById("hidden").style.display = "block"; // 히든 버튼 보이기
+});
+
+// Normal 모드
+document.getElementById("normal-button").addEventListener("click", () => {
+  // 현재 상태에서 경로 길이의 최솟값 계산 후 20 더해 설정
+  result_length = solution_length + 20; // 최솟값에 20 더하기
+  document.getElementById(
+    "solution-output"
+  ).innerText = `Solution Path Length: ${result_length}`; // 노말 모드에서는 기존 텍스트 사용
+  document.getElementById("step-output").style.display = "none"; // 노말 모드에서도 step-output 숨기기
+  document.getElementById("hidden").style.display = "none"; // 히든 버튼 숨기기
+});
+
+// Hard 모드
+document.getElementById("very-hard-button").addEventListener("click", () => {
+  // 하드 모드는 solution_length를 유지
+  result_length = solution_length; // 현재 상태 유지
+  document.getElementById(
+    "solution-output"
+  ).innerText = `Solution Path Length: ${result_length}`; // 하드 모드에서도 기존 텍스트 사용
+  document.getElementById("step-output").style.display = "none"; // 하드 모드에서도 step-output 숨기기
+  document.getElementById("hidden").style.display = "none"; // 히든 버튼 숨기기
+});
+
+// hidden 버튼 클릭 이벤트 설정
+document.getElementById("hidden").addEventListener("click", () => {
+  const stepOutput = document.getElementById("step-output");
+  // step-output의 display 상태를 토글
+  if (stepOutput.style.display === "none" || stepOutput.style.display === "") {
+    stepOutput.style.display = "block"; // 보이게 설정
+  } else {
+    stepOutput.style.display = "none"; // 숨기기
+  }
+});

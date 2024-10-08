@@ -16,42 +16,45 @@
   <body>
     <div class="title">8-Puzzle Game</div>
     <div id="solution-output"></div>
-    <div id="space-evenly">
-      <div class="level-button">
-        <button id="easy-button"><i class="fa-solid fa-face-smile"></i></button>
-        <button id="normal-button">
-          <i class="bi bi-emoji-expressionless-fill"></i>
-        </button>
-        <button id="very hard-button">
-          <i class="fa-solid fa-face-tired"></i>
-        </button>
-      </div>
-      <div class="puzzle">
-        <div class="tile" id="tile1">1</div>
-        <div class="tile" id="tile2">2</div>
-        <div class="tile" id="tile3">3</div>
-        <div class="tile" id="tile4">4</div>
-        <div class="tile" id="tile5">5</div>
-        <div class="tile" id="tile6">6</div>
-        <div class="tile" id="tile7">7</div>
-        <div class="tile" id="tile8">8</div>
-        <div class="tile empty" id="tile9"></div>
-      </div>
-      <div class="control-button">
-        <button id="solve-button">
-          <i class="fa-solid fa-puzzle-piece"></i>
-        </button>
-        <button id="reset-button">
-          <i class="fa-solid fa-rotate-right"></i>
-        </button>
-      </div>
-      <div id="Success"><i class="fa-solid fa-check"></i></div>
-
-      <div
-        id="step-output"
-        style="margin-top: 20px; font-family: Arial, sans-serif"
-      ></div>
+    <div class="level-button">
+      <button id="easy-button">
+        <i class="fa-solid fa-face-smile"></i>
+        <span class="button-text">Easy</span>
+      </button>
+      <button id="normal-button">
+        <i class="bi bi-emoji-expressionless-fill"></i>
+        <span class="button-text">Normal</span>
+      </button>
+      <button id="very-hard-button">
+        <i class="fa-solid fa-face-tired"></i>
+        <span class="button-text">Hard</span>
+      </button>
     </div>
+    <div class="puzzle">
+      <div class="tile" id="tile1">1</div>
+      <div class="tile" id="tile2">2</div>
+      <div class="tile" id="tile3">3</div>
+      <div class="tile" id="tile4">4</div>
+      <div class="tile" id="tile5">5</div>
+      <div class="tile" id="tile6">6</div>
+      <div class="tile" id="tile7">7</div>
+      <div class="tile" id="tile8">8</div>
+      <div class="tile empty" id="tile9"></div>
+    </div>
+    <div class="control-button">
+      <button id="solve-button">
+        <i class="fa-solid fa-puzzle-piece"></i>
+      </button>
+      <button id="reset-button">
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
+    </div>
+    <div id="Success"><i class="fa-solid fa-check"></i></div>
+    <button id="hidden"><i class="fa-solid fa-caret-down"></i></button>
+    <div
+      id="step-output"
+      style="margin-top: 20px; font-family: Arial, sans-serif"
+    ></div>
 
     <script src="script.js"></script>
   </body>

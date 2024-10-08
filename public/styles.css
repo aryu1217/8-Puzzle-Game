@@ -5,19 +5,66 @@ body {
 
 .level-button {
   position: absolute;
-  top: 360px;
-  left: 260px;
+  top: 240px;
+  left: 1220px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  gap: 16px;
 }
 
 .level-button button {
   width: 200px;
-  height: 60px;
+  height: 40px;
   font-size: 30px;
   padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex; /* 이모티콘과 텍스트를 가로로 정렬 */
+  align-items: center; /* 세로 가운데 정렬 */
+  transition: width 0.3s, border-radius 0.3s; /* 너비 및 모서리 변화 애니메이션 */
+  border-radius: 30px;
+}
+
+#easy-button:hover {
+  width: 230px;
+  background-color: #ffa500;
+  color: black;
+}
+
+#normal-button:hover {
+  width: 230px;
+  background-color: #5a5aff;
+  color: #000000;
+}
+
+#very-hard-button:hover {
+  width: 230px;
+  background-color: #cd1039;
+  color: black;
+}
+
+.button-text {
+  margin-left: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.level-button button:hover .button-text {
+  opacity: 1;
+}
+
+#easy-button {
+  color: #ffa500;
+}
+
+#normal-button {
+  color: #5a5aff;
+}
+
+#very-hard-button {
+  color: #cd1039;
 }
 
 .level-button button:hover {
@@ -30,9 +77,10 @@ body {
 }
 
 #step-output {
+  display: none;
   position: absolute;
   top: 110px;
-  right: 190px;
+  right: 1400px;
   width: 300px;
   font-size: 14px;
   color: #f6fcdd;
@@ -169,4 +217,17 @@ body {
 
 #Success.show {
   opacity: 1; /* 'show' 클래스를 추가하면 체크 표시가 나타남 */
+}
+
+#hidden {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #9da5b6;
+  position: absolute;
+  top: 130px;
+  right: 1400px;
+  width: 318px;
+  border: none;
+  z-index: 20;
+  border-radius: 8px;
+  cursor: pointer;
 }
